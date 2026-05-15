@@ -2,6 +2,7 @@ import { CheckCircle2, Circle, Filter, Plus, Trash2 } from 'lucide-react'
 import React from 'react'
 import TodoFilters from './TodoFilters'
 import TodoForm from './TodoForm'
+import TodoItem from './TodoItem'
 
 function TodoApp() {
     return <div className='min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 py-8 px-4'>
@@ -94,7 +95,10 @@ function TodoApp() {
                         {/* Conditional Rendering */}
                         <div className="text-gray-600">
                             <Filter size={48} className='mx-auto mb-4 opacity-50' />
-                            <p className='text-lg font-medium mb-2 text-gray-800'>No Filter Todos</p>
+                            <p className='text-lg font-medium mb-2 text-gray-800'>
+                                No Filter Todos
+                                <TodoItem />
+                            </p>
                         </div>
                     </div>
                 </div>
