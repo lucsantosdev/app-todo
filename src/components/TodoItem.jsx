@@ -1,4 +1,4 @@
-import { Calendar, Check } from 'lucide-react'
+import { Calendar, Check, Edit3, Trash2 } from 'lucide-react'
 import React from 'react'
 
 function TodoItem() {
@@ -21,6 +21,16 @@ function TodoItem() {
                         </div>
                         <span>Update</span>
                     </div>
+                </div>
+                {/* Action Buttons */}
+                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-200">
+                    <button className="p-2 text-gray-500 hover:text-gray-800 hover:bg-gray-200 rounded-lg transition-all duration-200">
+                        <Edit3 size={14} />
+                    </button>
+                    <button className="p-2 text-gray-500 hover:text-red-600 hover:bg-gray-200 rounded-lg transition-all duration-200">
+                        <Trash2 size={14} />
+                    </button>
+
                 </div>
             </div>
         </div>
