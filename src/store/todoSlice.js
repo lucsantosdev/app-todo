@@ -1,7 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+const loadTodos = () => {
+    try {
+        const saved = localStorage.getItem("todos")
+        return saved ? JSON.parse(saved) : []
+    } catch {
+        return []
+    }
+}
+
+const saveTodos = (todos) => {
+    try {
+        localStorage.setItem("todos", JSON.stringify(todos))
+    } catch (error) {
+        console.error("Failed to save todos:", error)
+    }
+}
+
 const initialState = {
-    items: [],
+    items: loadTodos(),
     filter: "all",
     isAddingTodo: false,
 }
@@ -25,6 +42,7 @@ const todoSlice = createSlice({
             }
             state.items.unshift(newTodo)
             state.isAddingTodo = false
+            saveTodos(state.items)
         },
 
         toggleTodo: (state, action) => {
@@ -32,11 +50,13 @@ const todoSlice = createSlice({
             if (todo) {
                 todo.completed = !todo.completed
                 todo.updatedAt = new Date().toISOString()
+                saveTodos(state.items)
             }
         },
 
         deleteTodo: (state, action) => {
             state.items = state.items.filter((todo) => todo.id !== action.payload)
+            saveTodos(state.items)
         },
 
         updateTodo: (state, action) => {
@@ -45,6 +65,7 @@ const todoSlice = createSlice({
             if (todo) {
                 Object.assign(todo, updates, { updatedAt: new Date().toISOString() })
             }
+            saveTodos(state.items)
         },
 
         setFilter: (state, action) => {
@@ -57,10 +78,12 @@ const todoSlice = createSlice({
                 todo.completed = hasInComplete
                 todo.updatedAt = new Date().toISOString()
             })
+            saveTodos(state.items)
         },
 
         clearCompleted: (state) => {
             state.items = state.items.filter(todo => !todo.completed)
+            saveTodos(state.items)
         }
 
     }
