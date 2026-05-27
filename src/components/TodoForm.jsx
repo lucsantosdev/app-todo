@@ -1,10 +1,11 @@
 import { Check, X } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { addTodo, setIsAddingTodo } from '../store/todoSlice'
 
 function TodoForm({
-    OnSubmit, 
-    OnCancel, 
+    onSubmit,
+    onCancel,
     initialValue = "", 
     placeholder = "Add a new task..."
 }) {
@@ -17,9 +18,9 @@ function TodoForm({
         e.preventDefault()
         const trimmedText = text.trim()
         if (trimmedText) {
-            if (OnSubmit) {
+            if (onSubmit) {
                 // for editing
-                OnSubmit(trimmedText)
+                onSubmit(trimmedText)
             } else {
                 dispatch(addTodo(trimmedText))
             }
@@ -28,8 +29,8 @@ function TodoForm({
     }
 
     const handleCancel = () => {
-        if (OnCancel) {
-            OnCancel()
+        if (onCancel) {
+            onCancel()
         } else {
             dispatch(setIsAddingTodo(false))
         }
@@ -64,8 +65,8 @@ function TodoForm({
                 <Check size={18} />    
                 </button>
                 <button
-                  type="submit"
-                  title="Save todo"
+                                    type="button"
+                                    title="Cancel"
                   className='flex items-center justify-center w-10 h-10 bg-gray-600 hover:bg-gray-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg transition-colors duration-200'
                   onClick={handleCancel}
                 >

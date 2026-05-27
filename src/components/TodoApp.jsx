@@ -5,7 +5,7 @@ import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFilter, selectFilteredTodos, selectIsAddingTodo, selectTodos, selectTodosStats } from '../store/selectors'
-import { setIsAddingTodo } from '../store/todoSlice'
+import { clearCompleted, markAllComplete, setFilter, setIsAddingTodo } from '../store/todoSlice'
 
 function TodoApp() {
 
@@ -134,11 +134,11 @@ function TodoApp() {
                                     <Filter size={48} className='mx-auto mb-4 opacity-50' />
                                     <p className='text-lg font-medium mb-2 text-gray-800'>
                                         No {filter} Todos
-                                        <p className="text-sm">
-                                            {filter === "completed" && "All caught up! Great job! 🎉"}
-                                            {filter === "active" && "No completed todos yet. Keep going! 💪"}
-                                        </p>
                                     </p>    
+                                    <p className="text-sm">
+                                        {filter === "active" && "All caught up! Great job! 🎉"}
+                                        {filter === "completed" && "No completed todos yet. Keep going! 💪"}
+                                    </p>
                                 </div>
                                 )}
                         </div>

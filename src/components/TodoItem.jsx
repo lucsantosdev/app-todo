@@ -1,5 +1,8 @@
 import { Calendar, Check, Edit3, Trash2 } from 'lucide-react'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import TodoForm from './TodoForm'
+import { deleteTodo, toggleTodo, updateTodo } from '../store/todoSlice'
 
 function TodoItem({ todo, index }) {
 
@@ -46,7 +49,7 @@ function TodoItem({ todo, index }) {
 
     return <>
         <div 
-          className={`group p-4 hover:bg-gray-100 transition-all duration-200 ${isDeleting ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'} ${todo.completed ? 'opacity-75' : ''}`} style={{animationDelay: `${index * 50}ms`, animation: "slideInUp 0.3s ease-out forwards"}}
+                    className={`group p-4 hover:bg-gray-100 transition-all duration-200 ${isDeleting ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'} ${todo.completed ? 'opacity-75' : ''}`} style={{ animationName: 'slideInUp', animationDuration: '0.3s', animationTimingFunction: 'ease-out', animationFillMode: 'forwards', animationDelay: `${index * 50}ms` }}
         >
             {/* Toggle Button */}
             <div className='flex items-start gap-3'>

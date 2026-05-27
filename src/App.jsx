@@ -1,6 +1,7 @@
-import REact from 'react'
+import React from 'react'
 import TodoApp from './components/TodoApp'
 import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 function App() {
 
