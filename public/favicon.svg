@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TodoFlow favicon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5ac8fa" />
+      <stop offset="100%" stop-color="#0a84ff" />
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.52" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#bg)" />
+  <path d="M14 8h36a10 10 0 0 1 10 10v8c-8-1-14-2-20-7-8-7-16-9-26-11z" fill="url(#gloss)" />
+
+  <circle cx="23" cy="27" r="3" fill="#ffffff" />
+  <circle cx="23" cy="40" r="3" fill="#ffffff" />
+
+  <path d="M31 27h12" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+  <path d="M31 40h10" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.78" />
+
+  <path d="M18.5 27.5l2.2 2.2 4.8-5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
