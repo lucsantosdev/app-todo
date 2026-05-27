@@ -1,11 +1,28 @@
-import { CheckCircle2, Circle, Filter, Plus, Trash2 } from 'lucide-react'
+import {
+    CheckCircle2,
+    Circle,
+    Filter,
+    Plus,
+    Trash2,
+} from 'lucide-react'
 import React from 'react'
+import { FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
+import { HiOutlineMail } from 'react-icons/hi'
+import { SiKofi } from 'react-icons/si'
 import TodoFilters from './TodoFilters'
 import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFilter, selectFilteredTodos, selectIsAddingTodo, selectTodos, selectTodosStats } from '../store/selectors'
 import { clearCompleted, markAllComplete, setFilter, setIsAddingTodo } from '../store/todoSlice'
+
+const socialLinks = [
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/lucsantosdev', icon: FaLinkedinIn },
+    { name: 'GitHub', href: 'https://github.com/lucsantosdev', icon: FaGithub },
+    { name: 'Email', href: 'mailto:lucsantosdev@gmail.com', icon: HiOutlineMail },
+    { name: 'YouTube', href: 'https://www.youtube.com/@lucsantosdev', icon: FaYoutube },
+    { name: 'Ko-fi', href: 'https://ko-fi.com/lucsantosdev', icon: SiKofi },
+]
 
 function TodoApp() {
 
@@ -32,75 +49,78 @@ function TodoApp() {
         dispatch(clearCompleted())
     }
 
-    return <div className='min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 py-8 px-4'>
-        <div className="max-w-2xl mx-auto">
+    return <div className='apple-background min-h-screen px-4 py-10 sm:py-14'>
+        <div className="mx-auto max-w-3xl">
             {/* Header */}
-            <div className="text-center mb-8">
-                <h1 className="text-4xl font-bold text-gray-800 mb-2">TodoFlow</h1>
-                <p>Organize your life, one task at a time</p>
+            <div className="mb-8 text-center sm:mb-10">
+                <div className="mx-auto mb-3 inline-flex items-center rounded-full border border-[#d6d9e2] bg-white/80 px-3 py-1 text-xs font-medium tracking-wide text-[#4d5566] shadow-sm">
+                    Minimal Workspace
+                </div>
+                <h1 className="mb-2 text-4xl font-semibold tracking-tight text-[#111827] sm:text-5xl">TodoFlow</h1>
+                <p className="text-sm text-[#6b7280] sm:text-base">Organize your day with calm, focus and simplicity.</p>
             </div>
 
             {/* Stats Card */}
             {stats.total > 0 && (
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-gray-300 shadow-lg">
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-gray-800">
+                <div className="apple-card mb-6 rounded-3xl p-6 sm:p-7">
+                <div className="mb-5 flex items-center justify-between">
+                    <h2 className="text-lg font-semibold text-[#1f2937]">
                         Progress Overview
                     </h2>
-                    <div className="text-2xl font-bold text-green-600">
+                    <div className="text-2xl font-semibold text-[#0a84ff]">
                         {stats.completionPercentage}%
                     </div>
                 </div>
 
-                <div className="w-full bg-gray-300 rounded-full h-3 mb-4">
+                <div className="mb-5 h-2.5 w-full rounded-full bg-[#e7ebf3]">
                     { /* Progress Bar */ }
-                    <div className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-500 ease-out" style={{ width: `${stats.completionPercentage}%` }}></div>
+                    <div className="h-2.5 rounded-full bg-gradient-to-r from-[#5ac8fa] to-[#0a84ff] transition-all duration-500 ease-out" style={{ width: `${stats.completionPercentage}%` }}></div>
                 </div>
 
                 { /* Stats */ }
-                <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                        <div className="text-2xl font-bold text-gray-800">
+                <div className="grid grid-cols-3 gap-3 text-center sm:gap-4">
+                    <div className="rounded-2xl bg-white/70 p-3">
+                        <div className="text-2xl font-semibold text-[#111827]">
                             {stats.total}
                         </div>
-                        <div className="text-sm text-gray-600">Total</div>
+                        <div className="text-xs uppercase tracking-wide text-[#6b7280]">Total</div>
                     </div>
-                    <div>
-                        <div className="text-2xl font-bold text-gray-800">
+                    <div className="rounded-2xl bg-white/70 p-3">
+                        <div className="text-2xl font-semibold text-[#111827]">
                             {stats.active}
                         </div>
-                        <div className="text-sm text-gray-600">Active</div>
+                        <div className="text-xs uppercase tracking-wide text-[#6b7280]">Active</div>
                     </div>
-                    <div>
-                        <div className="text-2xl font-bold text-gray-800">
+                    <div className="rounded-2xl bg-white/70 p-3">
+                        <div className="text-2xl font-semibold text-[#111827]">
                             {stats.completed}
                         </div>
-                        <div className="text-sm text-gray-600">Completed</div>
+                        <div className="text-xs uppercase tracking-wide text-[#6b7280]">Completed</div>
                     </div>
                 </div>
             </div>
             )}
 
             { /* Main Todo Container */ }
-            <div className="bg-white/90 backdrop-blur-sm rounded-b-2xl border border-gray-300 shadow-lg overflow-hidden">
+            <div className="apple-card overflow-hidden rounded-3xl">
                 { /* Action Bar */ }
-                <div className="p-6 border-b border-gray-300">
-                    <div className="flex items-center justify-between mb-4">
-                        <button onClick={handleAddTodoClick} className='flex items-center gap-3 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium cursor-pointer'>
+                <div className="border-b border-[#dfe4ec] p-6 sm:p-7">
+                    <div className="mb-5 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+                        <button onClick={handleAddTodoClick} className='inline-flex items-center gap-2 rounded-xl bg-[#0a84ff] px-4 py-2.5 text-sm font-medium text-white shadow-[0_10px_20px_rgba(10,132,255,0.24)] transition-all duration-200 hover:bg-[#0077ed] hover:shadow-[0_14px_24px_rgba(10,132,255,0.24)] cursor-pointer'>
                             <Plus size={20} /> Add Todo
                         </button>
 
                         { /* Clear and Delete Buttons */ }
                         {stats.total > 0 && (
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
                                 {stats.completed > 0 && (
-                                    <button onClick={handleClearCompleted} className="flex items-center gap-3 text-red-600 hover:text-red-700 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors duration-200 text-sm">
+                                    <button onClick={handleClearCompleted} className="inline-flex items-center gap-2 rounded-xl border border-[#ffd8d8] bg-white px-3 py-2 text-sm text-[#d12f2f] transition-all duration-200 hover:bg-[#fff2f2]">
                                         <Trash2 size={16} />
                                         Clear Completed
                                     </button>
                                 )}
                                 {stats.active > 0 && (
-                                    <button onClick={handleMarkComplete} className="flex items-center gap-3 text-green-600 hover:text-green-700 px-3 py-2 rounded-lg hover:bg-green-50 transition-colors duration-200 text-sm">
+                                    <button onClick={handleMarkComplete} className="inline-flex items-center gap-2 rounded-xl border border-[#d4e7ff] bg-white px-3 py-2 text-sm text-[#0a84ff] transition-all duration-200 hover:bg-[#edf5ff]">
                                         <CheckCircle2 size={16} />
                                         Mark All Completed
                                     </button>
@@ -113,26 +133,26 @@ function TodoApp() {
                 </div>
                 { /* Todo Form */ }
                 {isAddingTodo && (
-                     <div className="p-6 border-b border-gray-300 bg-gray-100">
+                     <div className="border-b border-[#dfe4ec] bg-[#f5f7fb] p-6 sm:p-7">
                         <TodoForm placeholder="What needs to be done?" />
                     </div>
                 )}
                 { /* Todo List */ }
                 <div className="max-h-96 overflow-y-auto">
                     {filteredTodos.length === 0 ? (
-                        <div className="p-12 text-center">
+                        <div className="p-12 text-center sm:p-16">
                             {todos.length === 0 ? (
-                                <div className="text-gray-600">
+                                <div className="text-[#6b7280]">
                                     <Circle size={48} className="mx-auto mb-4 opacity-50" />
-                                    <p className="text-lg font-medium mb-2 text-gray-800">
+                                    <p className="mb-2 text-lg font-medium text-[#111827]">
                                         No Todos Yet
                                     </p>
                                     <p>Add your first todo to get started!</p>
                                 </div>    
                             ) : ( 
-                                <div className="text-gray-600">
+                                <div className="text-[#6b7280]">
                                     <Filter size={48} className='mx-auto mb-4 opacity-50' />
-                                    <p className='text-lg font-medium mb-2 text-gray-800'>
+                                    <p className='mb-2 text-lg font-medium text-[#111827]'>
                                         No {filter} Todos
                                     </p>    
                                     <p className="text-sm">
@@ -153,7 +173,35 @@ function TodoApp() {
             </div>
 
             { /* Footer */ }
-            <div className="text-center mt-6 text-sm text-gray-700">Footer</div>
+            <footer className="mt-8 rounded-3xl border border-[#dfe4ec] bg-white/70 px-6 py-5 text-center backdrop-blur-xl">
+                <p className="mb-3 text-sm text-[#6b7280]">
+                    Built with focus. Developed by{' '}
+                    <a
+                      href="https://www.linkedin.com/in/lucsantosdev"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[#0a84ff] hover:text-[#0077ed]"
+                    >
+                        @lucsantosdev
+                    </a>
+                </p>
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                    {socialLinks.map(({ name, href, icon: Icon }) => {
+                        return (
+                            <a
+                              key={name}
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={name}
+                              className="social-link"
+                            >
+                                <Icon size={17} />
+                            </a>
+                        )
+                    })}
+                </div>
+            </footer>
         </div>
         
     </div>

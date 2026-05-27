@@ -37,7 +37,7 @@ function TodoItem({ todo, index }) {
     }
 
     if(isEditing) {
-        return <div className="p-4 bg-gray-100">
+        return <div className="bg-[#f5f7fb] p-4 sm:p-5">
             <TodoForm 
               initialValue={todo.text} 
               onSubmit={handleUpdate} 
@@ -49,30 +49,30 @@ function TodoItem({ todo, index }) {
 
     return <>
         <div 
-                    className={`group p-4 hover:bg-gray-100 transition-all duration-200 ${isDeleting ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'} ${todo.completed ? 'opacity-75' : ''}`} style={{ animationName: 'slideInUp', animationDuration: '0.3s', animationTimingFunction: 'ease-out', animationFillMode: 'forwards', animationDelay: `${index * 50}ms` }}
+                    className={`group p-4 transition-all duration-200 hover:bg-[#f7f9fd] sm:px-5 ${isDeleting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'} ${todo.completed ? 'opacity-75' : ''}`} style={{ animationName: 'slideInUp', animationDuration: '0.3s', animationTimingFunction: 'ease-out', animationFillMode: 'forwards', animationDelay: `${index * 50}ms` }}
         >
             {/* Toggle Button */}
             <div className='flex items-start gap-3'>
-                <button onClick={handleToggle} className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 mt-0.5 ${todo.completed ? 'bg-green-500 border-green-500 text-white hover:bg-green-600' : 'border-gray-400 hover:border-gray-500 hover:bg-green-500'}`}>
+                <button onClick={handleToggle} className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200 ${todo.completed ? 'border-[#0a84ff] bg-[#0a84ff] text-white hover:bg-[#0077ed]' : 'border-[#b6bfcc] bg-white hover:border-[#0a84ff] hover:bg-[#e9f3ff]'}`}>
                     {todo.completed && <Check size={14} />}
                 </button>
                 {/* Todo Content */}
                 <div className='flex-1 min-w-0'>
-                        <div className={`text-gray-800 leading-relaxed`}>{todo.text}</div>
-                    <div className='flex items-center gap-4 mt-2 text-xs text-gray-600'>
+                        <div className={`leading-relaxed text-[#1f2937] ${todo.completed ? 'line-through decoration-[#0a84ff]/60' : ''}`}>{todo.text}</div>
+                    <div className='mt-2 flex items-center gap-4 text-xs text-[#7a8394]'>
                         <div className='flex items-center gap-1'>
                             <Calendar size={12} />
                             <span>Created {formatDate(todo.createdAt)}</span>
                         </div>
-                        <span>Update {formatDate(todo.updatedAt)}</span>
+                        <span>Updated {formatDate(todo.updatedAt)}</span>
                     </div>
                 </div>
                 {/* Action Buttons */}
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-200">
-                    <button className="p-2 text-gray-500 hover:text-gray-800 hover:bg-gray-200 rounded-lg transition-all duration-200" onClick={() => setIsEditing(true)}>
+                    <button className="rounded-lg p-2 text-[#7a8394] transition-all duration-200 hover:bg-[#ebf1fb] hover:text-[#1f2937]" onClick={() => setIsEditing(true)}>
                         <Edit3 size={14} />
                     </button>
-                    <button onClick={handleDelete} className="p-2 text-gray-500 hover:text-red-600 hover:bg-gray-200 rounded-lg transition-all duration-200">
+                    <button onClick={handleDelete} className="rounded-lg p-2 text-[#7a8394] transition-all duration-200 hover:bg-[#fff1f1] hover:text-[#d12f2f]">
                         <Trash2 size={14} />
                     </button>
 

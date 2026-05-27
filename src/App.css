@@ -1,1 +1,70 @@
 @import "tailwindcss";
+
+:root {
+	color: #111827;
+	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background:
+		radial-gradient(circle at 8% 8%, rgba(90, 200, 250, 0.2), transparent 30%),
+		radial-gradient(circle at 90% 20%, rgba(10, 132, 255, 0.16), transparent 30%),
+		linear-gradient(180deg, #f4f7fd 0%, #eef2f8 100%);
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.apple-background {
+	background:
+		radial-gradient(circle at 15% 15%, rgba(90, 200, 250, 0.16), transparent 36%),
+		radial-gradient(circle at 90% 25%, rgba(10, 132, 255, 0.12), transparent 35%);
+}
+
+.apple-card {
+	border: 1px solid #dfe4ec;
+	background: rgba(255, 255, 255, 0.78);
+	backdrop-filter: blur(18px);
+	box-shadow: 0 16px 38px rgba(15, 23, 42, 0.08);
+}
+
+.social-link {
+	display: inline-flex;
+	height: 2.2rem;
+	width: 2.2rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.8rem;
+	border: 1px solid #d9deea;
+	color: #5b6474;
+	background: #ffffff;
+	transition: all 180ms ease;
+}
+
+.social-link:hover {
+	transform: translateY(-1px);
+	border-color: #bfd9ff;
+	color: #0a84ff;
+	background: #f4f9ff;
+}
+
+@keyframes slideInUp {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
