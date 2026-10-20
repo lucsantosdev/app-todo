@@ -1,5 +1,7 @@
 # TodoFlow ✨
 
+🌐 **English** | [Português](lang/README.pt-BR.md) | [Español](lang/README.es.md)
+
 >TodoFlow is a minimalist todo app built with React, Redux Toolkit, Vite, and Tailwind CSS.
 
 ![App Preview](public/preview-app.png)
@@ -124,7 +126,7 @@ vercel --main
 - Data is stored in browser `localStorage`, so each user keeps their own local data.
 - Clearing browser site data will remove saved todos.
 
-## Possible Futurev Improvements 🔮
+## Possible Future Improvements 🔮
 
 - Backend sync (Supabase/Firebase/Node API)
 - User authentication
